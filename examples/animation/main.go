@@ -45,7 +45,10 @@ func main() {
 	parallel := animation.NewParallelTween(tween1, tween2)
 
 	// Add animation to animator
+	frameCounter := 0
 	animationFunc := func(frame int, dt float64) bool {
+		frameCounter++
+
 		// Clear display
 		fb.Clear(0x00)
 
@@ -57,8 +60,11 @@ func main() {
 		color := byte((int(x) + int(radius)) % 16)
 		fb.DrawCircle(int(x), int(y), int(radius), color, true)
 
-		// Draw progress bar
-		progress := parallel.GetProgress()
+		// Draw progress bar (simple progress based on frame count)
+		progress := float64(frameCounter) / 60.0 // 60 frames for full animation
+		if progress > 1.0 {
+			progress = 1.0
+		}
 		barWidth := int(200 * progress)
 		fb.DrawRect(28, 50, barWidth, 3, 0x0A, true)
 		fb.DrawRect(28, 50, 200, 3, 0x05, false)
