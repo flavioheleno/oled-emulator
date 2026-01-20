@@ -3,7 +3,11 @@
     "allow": [
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(go test:*)"
+      "Bash(go test:*)",
+      "Bash(go build:*)",
+      "Bash(go mod tidy:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
