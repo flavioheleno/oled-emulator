@@ -6,10 +6,10 @@ import (
 
 func TestBaseDeviceCreation(t *testing.T) {
 	config := Config{
-		Width:       256,
-		Height:      64,
-		ColorDepth:  4,
-		PixelFormat: HorizontalNibble,
+		Width:        256,
+		Height:       64,
+		ColorDepth:   4,
+		PixelFormat:  HorizontalNibble,
 		ColumnOffset: 28,
 	}
 
@@ -34,7 +34,7 @@ func TestNibblePacking(t *testing.T) {
 
 	// Test setting pixels
 	tests := []struct {
-		x, y int
+		x, y  int
 		color byte
 	}{
 		{0, 0, 0x0F},
@@ -61,10 +61,10 @@ func TestNibblePacking(t *testing.T) {
 
 func TestDirtyTracking(t *testing.T) {
 	config := Config{
-		Width:       256,
-		Height:      64,
-		ColorDepth:  4,
-		PixelFormat: HorizontalNibble,
+		Width:        256,
+		Height:       64,
+		ColorDepth:   4,
+		PixelFormat:  HorizontalNibble,
 		ColumnOffset: 28,
 	}
 
@@ -154,7 +154,7 @@ func TestSSD1322SetPixel(t *testing.T) {
 
 	// Set some pixels
 	tests := []struct {
-		x, y int
+		x, y  int
 		color byte
 	}{
 		{0, 0, 0x0F},
@@ -174,7 +174,7 @@ func TestSSD1322SetPixel(t *testing.T) {
 		}
 
 		// Only lower 4 bits should be set
-		if pixel != (test.color&0x0F) {
+		if pixel != (test.color & 0x0F) {
 			t.Errorf("expected pixel 0x%02X, got 0x%02X", test.color&0x0F, pixel)
 		}
 	}

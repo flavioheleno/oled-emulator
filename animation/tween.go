@@ -113,14 +113,14 @@ func CreateTweenAnimation(from, to float64, duration time.Duration, easing Easin
 
 // ColorTween tweens between two RGB colors
 type ColorTween struct {
-	fromR, toR   byte
-	fromG, toG   byte
-	fromB, toB   byte
-	duration     time.Duration
-	elapsed      time.Duration
-	easing       EasingFunc
-	onComplete   func()
-	onUpdate     func(r, g, b byte)
+	fromR, toR byte
+	fromG, toG byte
+	fromB, toB byte
+	duration   time.Duration
+	elapsed    time.Duration
+	easing     EasingFunc
+	onComplete func()
+	onUpdate   func(r, g, b byte)
 }
 
 // NewColorTween creates a new color tween
@@ -208,9 +208,9 @@ func (ct *ColorTween) Update(dt float64) bool {
 
 // SequenceTween chains multiple tweens together
 type SequenceTween struct {
-	tweens        []*Tween
-	currentIndex  int
-	onComplete    func()
+	tweens       []*Tween
+	currentIndex int
+	onComplete   func()
 }
 
 // NewSequenceTween creates a new sequence tween

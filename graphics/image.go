@@ -24,7 +24,7 @@ func DrawImage(fb *FrameBuffer, x, y int, img image.Image) error {
 			}
 
 			// Convert RGB to grayscale
-			gray := byte(((r >> 8) * 77 + (g >> 8) * 150 + (b >> 8) * 29) / 256)
+			gray := byte(((r>>8)*77 + (g>>8)*150 + (b>>8)*29) / 256)
 
 			// Convert to 4-bit grayscale
 			level := gray >> 4
@@ -74,7 +74,7 @@ func DrawImageScaled(fb *FrameBuffer, x, y, w, h int, img image.Image) error {
 			}
 
 			// Convert RGB to grayscale
-			gray := byte(((r >> 8) * 77 + (g >> 8) * 150 + (b >> 8) * 29) / 256)
+			gray := byte(((r>>8)*77 + (g>>8)*150 + (b>>8)*29) / 256)
 
 			// Convert to 4-bit grayscale
 			level := gray >> 4
@@ -130,7 +130,7 @@ func (it *ImageTiler) DrawTiled(fb *FrameBuffer, x, y, w, h int) error {
 			}
 
 			// Convert RGB to grayscale
-			gray := byte(((r >> 8) * 77 + (g >> 8) * 150 + (b >> 8) * 29) / 256)
+			gray := byte(((r>>8)*77 + (g>>8)*150 + (b>>8)*29) / 256)
 
 			// Convert to 4-bit grayscale
 			level := gray >> 4
@@ -156,7 +156,7 @@ func ConvertToGrayscale(src image.Image) image.Image {
 			r, g, b, a := src.At(x, y).RGBA()
 
 			// Convert to grayscale using standard luminosity formula
-			gray := uint8(((r >> 8) * 77 + (g >> 8) * 150 + (b >> 8) * 29) / 256)
+			gray := uint8(((r>>8)*77 + (g>>8)*150 + (b>>8)*29) / 256)
 
 			// Convert to 4-bit and back to 8-bit for display
 			level := (gray >> 4) << 4
@@ -178,7 +178,7 @@ func ConvertToBitmap(src image.Image, threshold uint8) image.Image {
 			r, g, b, _ := src.At(x, y).RGBA()
 
 			// Convert to grayscale
-			gray := uint8(((r >> 8) * 77 + (g >> 8) * 150 + (b >> 8) * 29) / 256)
+			gray := uint8(((r>>8)*77 + (g>>8)*150 + (b>>8)*29) / 256)
 
 			// Apply threshold
 			if gray > threshold {

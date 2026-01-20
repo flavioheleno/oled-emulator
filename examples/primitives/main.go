@@ -34,12 +34,12 @@ func main() {
 	fb.DrawLine(10, 24, 110, 24, 0x05)
 
 	// Draw rectangles
-	fb.DrawRect(140, 5, 30, 20, 0x08, false)   // Outline
-	fb.DrawRect(180, 5, 30, 20, 0x0C, true)    // Filled
+	fb.DrawRect(140, 5, 30, 20, 0x08, false) // Outline
+	fb.DrawRect(180, 5, 30, 20, 0x0C, true)  // Filled
 
 	// Draw circles
-	fb.DrawCircle(30, 45, 10, 0x0F, false)     // Outline
-	fb.DrawCircle(70, 45, 10, 0x0A, true)      // Filled
+	fb.DrawCircle(30, 45, 10, 0x0F, false) // Outline
+	fb.DrawCircle(70, 45, 10, 0x0A, true)  // Filled
 
 	// Draw ellipses
 	fb.DrawEllipse(120, 45, 15, 8, 0x08, false) // Outline

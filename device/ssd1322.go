@@ -7,107 +7,107 @@ import (
 // SSD1322 command codes
 const (
 	// Fundamental Commands
-	CmdSetColumnAddress   = 0x15 // Set column address
-	CmdSetRowAddress      = 0x75 // Set row address
-	CmdWriteRAM           = 0x5C // Write RAM
-	CmdReadRAM            = 0x5D // Read RAM
-	CmdSetContrast        = 0xC1 // Set contrast
-	CmdMasterContrast     = 0xC7 // Master current control
-	CmdSetRemap           = 0xA0 // Set remap and dual COM mode
-	CmdSetStartLine       = 0xA1 // Set display start line
-	CmdDisplayOffset      = 0xA2 // Set display offset
-	CmdDisplayMode        = 0xA4 // Set display mode (normal/entire on)
-	CmdInvertDisplay      = 0xA6 // Set normal/inverse display
-	CmdSetMultiplexRatio  = 0xCA // Set MUX ratio
+	CmdSetColumnAddress  = 0x15 // Set column address
+	CmdSetRowAddress     = 0x75 // Set row address
+	CmdWriteRAM          = 0x5C // Write RAM
+	CmdReadRAM           = 0x5D // Read RAM
+	CmdSetContrast       = 0xC1 // Set contrast
+	CmdMasterContrast    = 0xC7 // Master current control
+	CmdSetRemap          = 0xA0 // Set remap and dual COM mode
+	CmdSetStartLine      = 0xA1 // Set display start line
+	CmdDisplayOffset     = 0xA2 // Set display offset
+	CmdDisplayMode       = 0xA4 // Set display mode (normal/entire on)
+	CmdInvertDisplay     = 0xA6 // Set normal/inverse display
+	CmdSetMultiplexRatio = 0xCA // Set MUX ratio
 
 	// Display On/Off
-	CmdSleepMode          = 0xAE // Sleep mode (display OFF)
-	CmdNormalDisplay      = 0xAF // Normal mode (display ON)
+	CmdSleepMode     = 0xAE // Sleep mode (display OFF)
+	CmdNormalDisplay = 0xAF // Normal mode (display ON)
 
 	// Scrolling Commands
-	CmdHorizontalScroll   = 0x26 // Horizontal scroll setup
-	CmdContinuousScroll   = 0x27 // Horizontal scroll setup (continuous)
-	CmdDeactivateScroll   = 0x2E // Deactivate scroll
-	CmdActivateScroll     = 0x2F // Activate scroll
+	CmdHorizontalScroll = 0x26 // Horizontal scroll setup
+	CmdContinuousScroll = 0x27 // Horizontal scroll setup (continuous)
+	CmdDeactivateScroll = 0x2E // Deactivate scroll
+	CmdActivateScroll   = 0x2F // Activate scroll
 
 	// Timing and Driving Scheme Commands
-	CmdSetClockDivider    = 0xB3 // Set clock divider ratio
-	CmdSetPhaseLength     = 0xB1 // Set phase length
-	CmdEnhanceDisplay     = 0xB4 // Display enhancement
-	CmdSetPrecharge       = 0xBB // Set second precharge period
-	CmdSetVCOMH           = 0xBE // Set V_COMH deselect level
+	CmdSetClockDivider = 0xB3 // Set clock divider ratio
+	CmdSetPhaseLength  = 0xB1 // Set phase length
+	CmdEnhanceDisplay  = 0xB4 // Display enhancement
+	CmdSetPrecharge    = 0xBB // Set second precharge period
+	CmdSetVCOMH        = 0xBE // Set V_COMH deselect level
 
 	// Grayscale Table
-	CmdGrayscaleTable     = 0xB9 // Set default grayscale table
+	CmdGrayscaleTable = 0xB9 // Set default grayscale table
 
 	// Command Lock
-	CmdCommandLock        = 0xFD // Set command lock
+	CmdCommandLock = 0xFD // Set command lock
 )
 
 // SSD1322 display controller emulation
 type SSD1322 struct {
 	*BaseDevice
-	memory               *MemoryHelper
-	commandLocked        bool
-	displayOn            bool
-	dataMode             bool // true = data, false = command
-	contrastLevel        byte
-	masterCurrentLevel   byte
-	invertDisplay        bool
-	columnStart          int
-	columnEnd            int
-	rowStart             int
-	rowEnd               int
-	currentColumn        int
-	currentRow           int
-	scrollEnabled        bool
-	startLine            int
-	displayOffset        int
-	multiplexRatio       byte
-	clockDivider         byte
-	phaseLength          byte
-	prechargeVoltage     byte
-	vcomhLevel           byte
-	remapSettings        byte
-	grayscaleTableMode   int // 0 = default, 1 = custom
+	memory             *MemoryHelper
+	commandLocked      bool
+	displayOn          bool
+	dataMode           bool // true = data, false = command
+	contrastLevel      byte
+	masterCurrentLevel byte
+	invertDisplay      bool
+	columnStart        int
+	columnEnd          int
+	rowStart           int
+	rowEnd             int
+	currentColumn      int
+	currentRow         int
+	scrollEnabled      bool
+	startLine          int
+	displayOffset      int
+	multiplexRatio     byte
+	clockDivider       byte
+	phaseLength        byte
+	prechargeVoltage   byte
+	vcomhLevel         byte
+	remapSettings      byte
+	grayscaleTableMode int // 0 = default, 1 = custom
 }
 
 // NewSSD1322 creates a new SSD1322 device
 func NewSSD1322(width, height int) *SSD1322 {
 	config := Config{
-		Width:       width,
-		Height:      height,
-		ColorDepth:  4,
-		PixelFormat: HorizontalNibble,
+		Width:        width,
+		Height:       height,
+		ColorDepth:   4,
+		PixelFormat:  HorizontalNibble,
 		ColumnOffset: 28, // SSD1322 has 480 internal columns, display starts at column 28
 	}
 
 	baseDevice := NewBaseDevice(config)
 
 	ssd1322 := &SSD1322{
-		BaseDevice:       baseDevice,
-		memory:           NewMemoryHelper(width, height, HorizontalNibble, 28),
-		commandLocked:    true,
-		displayOn:        false,
-		dataMode:         false,
-		contrastLevel:    0x7F,
+		BaseDevice:         baseDevice,
+		memory:             NewMemoryHelper(width, height, HorizontalNibble, 28),
+		commandLocked:      true,
+		displayOn:          false,
+		dataMode:           false,
+		contrastLevel:      0x7F,
 		masterCurrentLevel: 0x0F,
-		invertDisplay:    false,
-		columnStart:      0,
-		columnEnd:        width - 1,
-		rowStart:         0,
-		rowEnd:           height - 1,
-		currentColumn:    0,
-		currentRow:       0,
-		scrollEnabled:    false,
-		startLine:        0,
-		displayOffset:    0,
-		multiplexRatio:   0x3F,
-		clockDivider:     0x00,
-		phaseLength:      0x74,
-		prechargeVoltage: 0x3C,
-		vcomhLevel:       0x07,
-		remapSettings:    0x14,
+		invertDisplay:      false,
+		columnStart:        0,
+		columnEnd:          width - 1,
+		rowStart:           0,
+		rowEnd:             height - 1,
+		currentColumn:      0,
+		currentRow:         0,
+		scrollEnabled:      false,
+		startLine:          0,
+		displayOffset:      0,
+		multiplexRatio:     0x3F,
+		clockDivider:       0x00,
+		phaseLength:        0x74,
+		prechargeVoltage:   0x3C,
+		vcomhLevel:         0x07,
+		remapSettings:      0x14,
 		grayscaleTableMode: 0,
 	}
 

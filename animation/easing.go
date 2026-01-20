@@ -32,7 +32,7 @@ func EaseInQuad(t float64) float64 {
 // EaseOutQuad decelerating to zero velocity
 func EaseOutQuad(t float64) float64 {
 	t = clamp(t)
-	return -t*(t-2)
+	return -t * (t - 2)
 }
 
 // EaseInOutQuad acceleration until halfway, then deceleration
@@ -208,9 +208,9 @@ func EaseInOutBack(t float64) float64 {
 	c1 := 1.70158
 	c2 := c1 * 1.525
 	if t < 0.5 {
-		return (math.Pow(2*t, 2) * ((c2 + 1) * 2*t - c2)) / 2
+		return (math.Pow(2*t, 2) * ((c2+1)*2*t - c2)) / 2
 	}
-	return (math.Pow(2*t-2, 2)*(c2+1)*(t*2-2)+c2) / 2 + 1
+	return (math.Pow(2*t-2, 2)*(c2+1)*(t*2-2)+c2)/2 + 1
 }
 
 // EaseInElastic elastically accelerating from zero velocity
@@ -252,7 +252,7 @@ func EaseInOutElastic(t float64) float64 {
 	if t < 0.5 {
 		return -(math.Pow(2, 20*t-10) * math.Sin((20*t-11.125)*c5)) / 2
 	}
-	return (math.Pow(2, -20*t+10) * math.Sin((20*t-11.125)*c5)) / 2 + 1
+	return (math.Pow(2, -20*t+10)*math.Sin((20*t-11.125)*c5))/2 + 1
 }
 
 // EaseInBounce bouncing acceleration from zero velocity

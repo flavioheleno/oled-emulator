@@ -48,13 +48,13 @@ func NewGrayscalePalette() *Palette {
 
 // VRAMRenderer converts device VRAM to a renderable image
 type VRAMRenderer struct {
-	device        device.Device
-	palette       *Palette
-	scale         int
-	lastDirtyX0   int
-	lastDirtyY0   int
-	lastDirtyX1   int
-	lastDirtyY1   int
+	device          device.Device
+	palette         *Palette
+	scale           int
+	lastDirtyX0     int
+	lastDirtyY0     int
+	lastDirtyX1     int
+	lastDirtyY1     int
 	backgroundColor color.Color
 }
 

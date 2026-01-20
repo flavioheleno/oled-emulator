@@ -16,12 +16,12 @@ const (
 
 // Config holds device configuration
 type Config struct {
-	Width        int           // Display width in pixels
-	Height       int           // Display height in pixels
-	ColorDepth   int           // Bits per pixel: 1, 4, 8, 24
-	PixelFormat  PixelFormat   // How pixels are packed in memory
-	ColumnOffset int           // Offset for VRAM column (e.g., 28 for SSD1322)
-	InitCommands []byte        // Custom initialization sequence
+	Width        int         // Display width in pixels
+	Height       int         // Display height in pixels
+	ColorDepth   int         // Bits per pixel: 1, 4, 8, 24
+	PixelFormat  PixelFormat // How pixels are packed in memory
+	ColumnOffset int         // Offset for VRAM column (e.g., 28 for SSD1322)
+	InitCommands []byte      // Custom initialization sequence
 }
 
 // Device defines the interface for display emulation
@@ -57,13 +57,13 @@ type Device interface {
 
 // BaseDevice provides common functionality for device implementations
 type BaseDevice struct {
-	config      Config
-	vram        []byte
-	dirtyX0     int
-	dirtyY0     int
-	dirtyX1     int
-	dirtyY1     int
-	hasDirty    bool
+	config   Config
+	vram     []byte
+	dirtyX0  int
+	dirtyY0  int
+	dirtyX1  int
+	dirtyY1  int
+	hasDirty bool
 }
 
 // NewBaseDevice creates a new base device

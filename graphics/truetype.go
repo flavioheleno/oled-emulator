@@ -40,4 +40,3 @@ func (ttf *TrueTypeFont) MeasureString(text string) (width, height int, err erro
 func (ttf *TrueTypeFont) GetGlyph(ch rune) (GlyphData, error) {
 	return ttf.bitmapFont.GetGlyph(ch)
 }
-

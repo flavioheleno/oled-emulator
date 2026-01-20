@@ -243,8 +243,8 @@ func DrawFilledTriangle(fb *FrameBuffer, x1, y1, x2, y2, x3, y3 int, color byte,
 			dot02 := v0x*v2x + v0y*v2y
 			dot12 := v1x*v2x + v1y*v2y
 
-			u := (float64(dot11*dot02-dot01*dot12)) * invDenom
-			v := (float64(dot00*dot12-dot01*dot02)) * invDenom
+			u := (float64(dot11*dot02 - dot01*dot12)) * invDenom
+			v := (float64(dot00*dot12 - dot01*dot02)) * invDenom
 
 			if u >= 0 && v >= 0 && u+v < 1 {
 				setPixel(x, y, color)

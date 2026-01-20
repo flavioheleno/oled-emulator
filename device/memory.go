@@ -29,7 +29,7 @@ func (mh *MemoryHelper) PixelToByteOffsetNibble(x, y int) (int, int, error) {
 	// For SSD1322 with HorizontalNibble format (2 pixels per byte)
 	// Each row has 480 columns internally (even if display is 256 wide)
 	columns := 480
-	byteOffset := (y * columns + x + mh.colOffset) / 2
+	byteOffset := (y*columns + x + mh.colOffset) / 2
 	nibbleIndex := (x + mh.colOffset) % 2
 
 	return byteOffset, nibbleIndex, nil
@@ -205,7 +205,7 @@ func (mh *MemoryHelper) ExtractRegionNibble(vram []byte, x0, y0, x1, y1 int) ([]
 			// Write to extracted buffer
 			relX := x - x0
 			relY := y - y0
-			offset := (relY * width + relX) / 2
+			offset := (relY*width + relX) / 2
 			nibbleIndex := (relX) % 2
 
 			if nibbleIndex == 0 {

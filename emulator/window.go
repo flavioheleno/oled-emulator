@@ -11,29 +11,29 @@ import (
 
 // Emulator represents the display emulator window
 type Emulator struct {
-	device         device.Device
-	renderer       *VRAMRenderer
-	screenImage    *ebiten.Image
-	scale          int
-	frameRate      int
-	windowTitle    string
+	device          device.Device
+	renderer        *VRAMRenderer
+	screenImage     *ebiten.Image
+	scale           int
+	frameRate       int
+	windowTitle     string
 	backgroundColor color.Color
-	showDebugInfo  bool
-	frameCount     int
-	lastFPS        float64
+	showDebugInfo   bool
+	frameCount      int
+	lastFPS         float64
 }
 
 // NewEmulator creates a new emulator window
 func NewEmulator(dev device.Device, scale int) *Emulator {
 	return &Emulator{
-		device:         dev,
-		renderer:       NewVRAMRenderer(dev, scale),
-		scale:          scale,
-		frameRate:      60,
-		windowTitle:    "OLED Display Emulator",
+		device:          dev,
+		renderer:        NewVRAMRenderer(dev, scale),
+		scale:           scale,
+		frameRate:       60,
+		windowTitle:     "OLED Display Emulator",
 		backgroundColor: color.RGBA{R: 20, G: 20, B: 20, A: 255},
-		showDebugInfo:  false,
-		frameCount:     0,
+		showDebugInfo:   false,
+		frameCount:      0,
 	}
 }
 

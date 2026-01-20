@@ -41,10 +41,10 @@ const (
 
 // TextOptions holds text rendering options
 type TextOptions struct {
-	Alignment TextAlignment
+	Alignment   TextAlignment
 	LineSpacing int
 	CharSpacing int
-	Color byte
+	Color       byte
 }
 
 // DefaultTextOptions returns default text rendering options

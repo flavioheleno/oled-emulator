@@ -13,16 +13,16 @@ type AnimationFunc func(frame int, dt float64) bool
 
 // Animator manages frame-based animations
 type Animator struct {
-	mu           sync.Mutex
-	fps          int
-	targetDt     float64
-	ticker       *time.Ticker
-	running      bool
-	frameCount   int
-	animations   []AnimationFunc
-	lastTime     time.Time
-	stopChan     chan struct{}
-	onFrame      func(frame int, dt float64)
+	mu         sync.Mutex
+	fps        int
+	targetDt   float64
+	ticker     *time.Ticker
+	running    bool
+	frameCount int
+	animations []AnimationFunc
+	lastTime   time.Time
+	stopChan   chan struct{}
+	onFrame    func(frame int, dt float64)
 }
 
 // NewAnimator creates a new animator with the specified FPS
