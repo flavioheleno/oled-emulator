@@ -16,6 +16,9 @@ jobs:
         with:
           go-version-file: 'go.mod'
 
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxcursor-dev libxi-dev libgl1-mesa-dev pkg-config
+
       - name: Run go vet
         run: go vet ./...
 
